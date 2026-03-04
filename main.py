@@ -12,6 +12,19 @@ import datetime
 import os
 
 app = FastAPI(title="Shield Cyber Forensic Investigation")
+from fastapi.responses import HTMLResponse
+
+@app.get("/", response_class=HTMLResponse)
+def dashboard():
+    return """
+    <html>
+    <body style="background:#0f172a;color:white;font-family:Arial;text-align:center;padding:50px;">
+    <h1>🛡 Shield Cyber Forensic Investigation</h1>
+    <h3>AI System Running</h3>
+    <p>Your Cyber Investigation AI server is live.</p>
+    </body>
+    </html>
+    """
 
 # ================= SECURITY =================
 app.add_middleware(SessionMiddleware, secret_key="shield_super_secure_key_2026")
@@ -264,4 +277,5 @@ def cases(request: Request):
     </table>
     <br><a href="/dashboard" style="color:#facc15;">Back</a>
     </body></html>
+
     """
